@@ -1,6 +1,10 @@
 <template>
   <div>
-    
+    <ul>
+      <li v-for="(email, index) in emailList" :key="index">
+        {{email}}
+      </li>
+    </ul>
   </div>
 </template>
 
