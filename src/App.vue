@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <Main/>
-    <h1 v-for="()">{{emailRandom}}</h1>
+    <!-- <h1>{{emailRandom}}</h1> -->
+    <!-- <h1>{{emailList}}</h1> -->
+    <ul>
+      <li v-for="(email, index) in emailList" :key="index">
+        {{email}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,16 +30,19 @@ export default {
 mounted() {
   // let self = this;
   console.log(axios);
-
-  axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
-  .then( (response) => {
-
-    const result = response.data;
-    console.log(result.response);
-    this.emailRandom = result.response;
-
-  });
-
+  for (let i = 0; i < 10; i++) {
+    axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
+    .then( (response) => {
+      
+      const result = response.data;
+      console.log(result);
+      this.emailRandom = result.response; 
+      this.emailList.push(this.emailRandom);
+      
+      console.log(this.emailRandom) 
+      console.log(this.emailList)
+    });
+  }
 },
  created(){
   
